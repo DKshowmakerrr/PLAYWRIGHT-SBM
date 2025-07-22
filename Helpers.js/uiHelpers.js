@@ -1,13 +1,45 @@
+// hàm dùng cho label
+async function testLabels({ page, locator, expectText, shouldBeVisible = true, exactMatch = true }) {
+  const label = page.locator(locator);
+
+  if (shouldBeVisible) {
+    await expect(label).toBeVisible;
+  } else {
+    await expect(label).toBeHidden;
+  }
+
+  if (expectText) {
+    await expect(label).toHaveText(expectText);
+  }
+}
+
+//hàm dùng cho textbox
+async function testTextbox({
+  page,
+  locator,
+  shouldBeVisible = true,
+  shouldBeEnabled = true,
+  placeholder,
+  click = false,
+  isEmpty = true,
+  keyword,
+}) {
+  const textbox = page.locator(locator)
+
+  if()
+}
+
+// hàm dùng cho button
 async function testButtons({
   page,
   locator,
-  shouldbeVisible = true,
-  shouldbeEnable = true,
+  shouldBeVisible = true,
+  shouldBeEnabled = true,
   click = false,
   expectUrlAfterClick,
 }) {
   const button = page.locator(locator);
-  if (shouldbeVisible) {
+  if (shouldBeVisible) {
     await expect(button).toBeVisible();
   } else {
     await expect(button).toBeHidden();
@@ -26,9 +58,9 @@ async function testButtons({
       await expect(page).toHaveURL(expectUrlAfterClick);
     }
 
-    if (expectTextAfterClick) {
+    /*     if (expectTextAfterClick) {
       await expect(page.getByText(expectTextAfterClick)).toBeVisible();
-    }
+    } */
   }
 }
 
